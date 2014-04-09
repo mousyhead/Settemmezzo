@@ -3,7 +3,6 @@ package it.skedenpio;
 public class Card {
 	
 	private String seed;
-	
 	private int number;
 
 	protected String getSeme() {
@@ -14,12 +13,10 @@ public class Card {
 		return number;
 	}
 
-	public Card(String seed, int number){
-		
+	public Card(String seed, int number){	
 		this.seed=seed;
 		this.number=number;
 	}
-	
 	
 
 }

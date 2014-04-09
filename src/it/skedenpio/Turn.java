@@ -7,7 +7,8 @@ public class Turn {
 	private double score = 0;
 	
 	protected void giveCard() {
-		Card carta = Deck.getRandomCard(); //Prendo carta
+		Deck deck = new Deck();
+		Card carta = deck.getCard(); //Prendo carta
 		System.out.println(carta.getNumero()+" di "+carta.getSeme());//Stampo la carta
 		//controllo punteggio carta
 		double valoreCarta = carta.getNumero();
