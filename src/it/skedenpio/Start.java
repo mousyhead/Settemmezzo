@@ -9,9 +9,7 @@ public class Start {
 		
 		
 		Deck d=new Deck();
-		System.out.println( Deck.getRandomCard().getSeme() );
-
-		System.out.println( Deck.getRandomCard().getNumero() );
+		
 
 	}
 
