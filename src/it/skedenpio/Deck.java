@@ -5,9 +5,9 @@ public class Deck {
 	private static Card[] cards= {new Card("Denari",1),
 		new Card("Denari",2),
 		new Card("Denari",3),
-		new Card("Denari",4),
-		new Card("Denari",5),
-		new Card("Denari",6)}; 
+		new Card("Denari",10),
+		new Card("Denari",9),
+		new Card("Denari",8)}; 
 	
 	
 	public static Card getRandomCard() {

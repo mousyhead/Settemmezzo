@@ -7,11 +7,12 @@ public class Start {
 	 */
 	public static void main(String[] args) {
 		
-		
-		Deck d=new Deck();
-		System.out.println( Deck.getRandomCard().getSeme() );
-
-		System.out.println( Deck.getRandomCard().getNumero() );
+		Turn turno = new Turn();
+		turno.giveCard();
+//		Deck d=new Deck();
+//		System.out.println( Deck.getRandomCard().getSeme() );
+//
+//		System.out.println( Deck.getRandomCard().getNumero() );
 
 	}
 
