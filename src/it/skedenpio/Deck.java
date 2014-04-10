@@ -53,6 +53,7 @@ public class Deck {
 	
 	public Deck(){
 		shuffleDeck();
+		System.out.println("Mazzo mescolato! Iniziamo...");
 	}
 
 	private void shuffleDeck(){
