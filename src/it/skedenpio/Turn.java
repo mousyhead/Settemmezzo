@@ -23,7 +23,7 @@ public class Turn {
 			if ( isSballato(player1) ) {
 				System.out.println(card.getNumero()+" di "+card.getSeme()+". Punti: "+deck.calcValue(card));
 				System.out.println( "TOTALE: " + player1.getScore() );
-				System.out.println( "HAI SBALLATO!!!" );				
+				System.out.println( "HAI SBALLATO!!!" );		
 				return;
 			} else {
 				System.out.println(card.getNumero()+" di "+card.getSeme()+". Punti: "+deck.calcValue(card));
@@ -68,18 +68,6 @@ public class Turn {
 	}
 	
 	
-	
-	public void Replay(){		
-		System.out.println("RIGIOCA (R) | ESCI (X)");
-		Scanner sc = new Scanner(System.in);
-	    String i = sc.next();
-	    System.out.println(i);
-	    if (i.toLowerCase().equals("r")) {
-	    	execute();
-	    } else {
-	    	return;
-	    }
-	}
 	
 	public boolean moreCards(){		
 		Scanner sc = new Scanner(System.in);
