@@ -4,10 +4,12 @@ import java.util.Scanner;
 
 public class Turn {
 	
+	Deck deck = new Deck();
+	
 	public void execute() {
 		
 		clearConsole();
-		Deck deck = new Deck(); //Shuffle
+		//Deck deck = new Deck(); //Shuffle
 		
 		// TURNO PLAYER1
 		Player player1 = new Player();
@@ -23,20 +25,37 @@ public class Turn {
 				deck.getCard(); //dai carta
 				System.out.println(card.getNumero()+" di "+card.getSeme()+". Punti: "+calcValue(card));
 				System.out.println( "TOTALE: " + player1.getScore() );
-				System.out.println("CARTA (C) | STO BENE (S)");
+				System.out.println("CARTA (C) | STO BENE (S)");				
 			}
 		} while ( moreCards() && !isSballato(player1) );
 		
 		
 		
-
-		
-		// TURNO DEALER
 		if ( !isSballato(player1) ) {
+			// TURNO DEALER
 			Player dealer = new Player();
 			dealer.setScore(0);
 			
 			System.out.println("TURNO DEALER");
+
+			do {
+				Card card = deck.getCard(); //dai carta	
+				dealer.setScore( dealer.getScore() + calcValue(card) );
+				if ( isSballato(dealer) ) {
+					System.out.println( "TOTALE: " + dealer.getScore() );
+					System.out.println( "IL DEALER HA SBALLATO! HAI VINTO!!!" );									
+				} else {
+					deck.getCard(); //dai carta
+					System.out.println(card.getNumero()+" di "+card.getSeme()+". Punti: "+calcValue(card));
+					System.out.println( "TOTALE DEALER: " + dealer.getScore() );	
+				}
+			} while ( ( dealer.getScore() < player1.getScore()-2 ) && !isSballato(dealer) );
+			if (player1.getScore() > dealer.getScore() ) {
+				System.out.println( "HAI VINTO!!!" );	// VINCE PLAYER1				
+			} else {
+				System.out.println( "HAI PERSO!!!" );	// VINCE DEALER				
+			}
+			Replay();
 		}
 
 		
