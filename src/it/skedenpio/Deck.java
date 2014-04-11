@@ -50,7 +50,12 @@ public class Deck {
 
 	private ArrayList<Card> cardsList; 
 
+	private boolean reShuffle = false;
 	
+	public ArrayList<Card> getCardsList() {
+		return cardsList;
+	}
+
 	public Deck(){
 		shuffleDeck();
 		System.out.println("Mazzo mescolato! Iniziamo...");
@@ -64,7 +69,23 @@ public class Deck {
 	public Card getCard(){
 		Card c = cardsList.get(0);
 		cardsList.remove(0);
+		if ( c .getNumero() == 10 && c.getSeme().equals("Denari") ) {
+			reShuffle = true;
+		}
 		return c;
+	}
+	
+	public float calcValue(Card carta) {
+		float valoreCarta = carta.getNumero();
+		// Gestisci qui il valore della matta
+		if (carta.getNumero()>7) {
+			valoreCarta = 0.5f;
+		}
+		return valoreCarta;
+	}
+	
+	public boolean getReShuffle() {
+		return reShuffle;
 	}
 
 }

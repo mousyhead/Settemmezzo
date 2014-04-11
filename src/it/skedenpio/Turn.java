@@ -4,26 +4,29 @@ import java.util.Scanner;
 
 public class Turn {
 	
-	Deck deck = new Deck();
+	
 	
 	public void execute() {
 		
-		clearConsole();
-		//Deck deck = new Deck(); //Shuffle
+		clearConsole();		
+		Deck deck = new Deck();
 		
 		// TURNO PLAYER1
 		Player player1 = new Player();
-		player1.setScore(0);		
-		do {
-			Card card = deck.getCard(); //dai carta	
-			player1.setScore( player1.getScore() + calcValue(card) );
+		player1.setScore(0);	
+			
+		do { 
+			Card card = deck.getCard(); //dai carta
+			System.out.println(deck.getCardsList().size());
+			
+			player1.setScore( player1.getScore() + deck.calcValue(card) );
 			if ( isSballato(player1) ) {
+				System.out.println(card.getNumero()+" di "+card.getSeme()+". Punti: "+deck.calcValue(card));
 				System.out.println( "TOTALE: " + player1.getScore() );
 				System.out.println( "HAI SBALLATO!!!" );				
-				Replay();
+				return;
 			} else {
-				deck.getCard(); //dai carta
-				System.out.println(card.getNumero()+" di "+card.getSeme()+". Punti: "+calcValue(card));
+				System.out.println(card.getNumero()+" di "+card.getSeme()+". Punti: "+deck.calcValue(card));
 				System.out.println( "TOTALE: " + player1.getScore() );
 				System.out.println("CARTA (C) | STO BENE (S)");				
 			}
@@ -34,32 +37,37 @@ public class Turn {
 		if ( !isSballato(player1) ) {
 			// TURNO DEALER
 			Player dealer = new Player();
-			dealer.setScore(0);
-			
+			dealer.setScore(0);			
 			System.out.println("TURNO DEALER");
-
-			do {
-				Card card = deck.getCard(); //dai carta	
-				dealer.setScore( dealer.getScore() + calcValue(card) );
+			do { 
+				Card carta2 = deck.getCard(); //dai carta	
+				System.out.println(deck.getCardsList().size());
+				dealer.setScore( dealer.getScore() + deck.calcValue(carta2) );
 				if ( isSballato(dealer) ) {
+					System.out.println(carta2.getNumero()+" di "+carta2.getSeme()+". Punti: "+deck.calcValue(carta2));
 					System.out.println( "TOTALE: " + dealer.getScore() );
 					System.out.println( "IL DEALER HA SBALLATO! HAI VINTO!!!" );									
 				} else {
-					deck.getCard(); //dai carta
-					System.out.println(card.getNumero()+" di "+card.getSeme()+". Punti: "+calcValue(card));
+					System.out.println(carta2.getNumero()+" di "+carta2.getSeme()+". Punti: "+deck.calcValue(carta2));
 					System.out.println( "TOTALE DEALER: " + dealer.getScore() );	
 				}
 			} while ( ( dealer.getScore() < player1.getScore()-2 ) && !isSballato(dealer) );
+			
 			if (player1.getScore() > dealer.getScore() ) {
 				System.out.println( "HAI VINTO!!!" );	// VINCE PLAYER1				
-			} else {
+			} else if(!isSballato(dealer)) {
 				System.out.println( "HAI PERSO!!!" );	// VINCE DEALER				
 			}
-			Replay();
+//			if (deck.getReShuffle()==true) {
+//				deck = new Deck();
+//			}
+			return;			
 		}
 
 		
 	}
+	
+	
 	
 	public void Replay(){		
 		System.out.println("RIGIOCA (R) | ESCI (X)");
@@ -69,14 +77,14 @@ public class Turn {
 	    if (i.toLowerCase().equals("r")) {
 	    	execute();
 	    } else {
-	    	System.exit(0);
+	    	return;
 	    }
 	}
 	
 	public boolean moreCards(){		
 		Scanner sc = new Scanner(System.in);
 	    String i = sc.next();
-	    System.out.println(i);
+	    System.out.println(i);	    
 	    if (i.toLowerCase().equals("c")) {
 	    	return true;
 	    } else {
@@ -92,14 +100,10 @@ public class Turn {
 		}
 	}
 	
-	public float calcValue(Card carta) {
-		float valoreCarta = carta.getNumero();
-		// Gestisci qui il valore della matta
-		if (carta.getNumero()>7) {
-			valoreCarta = 0.5f;
-		}
-		return valoreCarta;
-	}
+
+	
+	
+	
 	
 	/*
 	 * * UTILITIES da spostare in altro pacchetto
@@ -124,28 +128,6 @@ public class Turn {
 	}
 
 	
-	/*
-	protected void execute() {
-		 Deck deck = new Deck();
-
-		Card carta = deck.getCard(); //Prendo carta
-		System.out.println(carta.getNumero()+" di "+carta.getSeme());//Stampo la carta
-		//controllo punteggio carta
-		float valoreCarta = carta.getNumero();
-		if (carta.getNumero()>7) {
-			valoreCarta = 0.5f;
-		}
-		this.setScore( this.getScore() + valoreCarta );//ricalcolo punteggio
-		if (isSballato()) {
-			//SBALLATO
-		}
-		System.out.println(this.getScore());
-		//stai o carta?		
-		this.moreCards();
-	}
-			 */
-
-
 	
 
 }
